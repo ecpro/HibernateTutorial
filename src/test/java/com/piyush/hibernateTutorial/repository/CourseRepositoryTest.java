@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import static org.junit.Assert.*;
 
@@ -77,6 +78,15 @@ public class CourseRepositoryTest {
     public void testJPQL_ByType() {
         String query = "select * from Course c";
         em.createQuery(query, Course.class).getResultList().forEach(result -> System.out.println(result));
+    }
+
+    @Test
+    public void nativeQueryWithParameters() {
+        String query = "select * from course where name =  :name";
+        Query nativeQuery = em.createNativeQuery(query, Course.class);
+        nativeQuery.setParameter("name", "Concurrency");
+        nativeQuery.getResultList().forEach(course -> System.out.println(course));
+
     }
 
 }

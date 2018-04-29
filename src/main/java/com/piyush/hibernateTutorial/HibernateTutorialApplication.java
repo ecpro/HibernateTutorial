@@ -23,8 +23,6 @@ public class HibernateTutorialApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		final Course course = courseRepository.findById(10001L);
-		logger.info("course found --{}", course);
-
+		courseRepository.entityManagerFlushAndDetach();
 	}
 }

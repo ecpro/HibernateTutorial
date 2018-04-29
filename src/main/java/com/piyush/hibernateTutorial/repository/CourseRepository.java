@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.FlushModeType;
 
 @Repository
 @Transactional
@@ -24,18 +23,19 @@ public class CourseRepository {
         return course;
     }
 
+    public void deleteById(Long id) {
+        final Course course = this.findById(id);
+        entityManager.remove(course);
+    }
+
     public Course saveOrUpdate(Course course) {
         if (course.getId() == null) {
             entityManager.persist(course);
         } else {
             entityManager.merge(course);
         }
+        //TODO: Find difference between merge() and persists().
         return course;
-    }
-
-    public void deleteById(Long id) {
-        final Course course = this.findById(id);
-        entityManager.remove(course);
     }
 
     public void playWithEntityManager() {
@@ -53,7 +53,6 @@ public class CourseRepository {
     }
 
     // --------  Uses of flush() and detach() method -------------
-    //TODO: Find difference between merge() and persists().
     // In below example entityManager.merge(course1) was throwing and
     // exception when persists() used instead of merge(). For persists() id cannot be provided from outside
 
@@ -68,12 +67,14 @@ public class CourseRepository {
         // If not used then it will throw exception (Error during managed flush )
         // as we are detaching course 2 below so data must be flushed to db before detach operation
 
-        course1.setName("Arithmetic 101 - updated"); // this will also be updated even if persists/merge not called
-
         // Now we don't want course2 be tracked by entity manager. In this case we will detach course2 and
-        // entitiy manager won't track it anymore.
+        // entity manager won't track it anymore.
 
         entityManager.detach(course2);
+
+        // entityManager.clear(); // this will detach every object being tracked by entity manager
+
+        course1.setName("Arithmetic 101 - updated"); // this will also be updated even if persists/merge not called
 
         course2.setName("Geometry 101 - updated"); // this will not be persisted as it has been detached
 
@@ -86,5 +87,25 @@ public class CourseRepository {
         by default it's set to AUTO and a flush will be done automatically by if it's set to COMMIT
         the persitence of the data to the underlying database will be delayed when the transaction is commited).
      */
+
+    public void entityManagerRefresh() {
+        Course course1 = new Course("Arithmetic 101");
+        entityManager.persist(course1);
+
+        Course course2 = new Course("Geometry 101");
+        entityManager.persist(course2);
+
+        entityManager.flush(); // saved above data to db
+
+        course1.setName("Arithmetic 101 - updated");
+        course2.setName("Geometry 101 - updated");
+
+        entityManager.refresh(course1); // a select query is fired and course1 is
+        // update by values returned by that query
+
+        entityManager.flush();
+
+    }
+
 
 }

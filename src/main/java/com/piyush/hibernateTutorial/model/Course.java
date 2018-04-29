@@ -1,9 +1,9 @@
 package com.piyush.hibernateTutorial.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+
+//@Table(name = "CourseDetails") //  required with you need to specify a different table name
 @Entity
 public class Course {
 
@@ -11,7 +11,11 @@ public class Course {
     @GeneratedValue
     private Long id;
 
+    //@Column(name = "full_name", nullable = false) // required for custom column name in db different than class field here
+    // and other contraints in db colunt
     private String name;
+
+
 
     public Course() {
     }

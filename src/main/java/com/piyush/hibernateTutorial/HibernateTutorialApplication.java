@@ -23,6 +23,6 @@ public class HibernateTutorialApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		courseRepository.entityManagerFlushAndDetach();
+		courseRepository.entityManagerRefresh();
 	}
 }

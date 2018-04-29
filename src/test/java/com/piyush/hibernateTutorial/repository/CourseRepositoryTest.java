@@ -11,6 +11,8 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
+import javax.persistence.EntityManager;
+
 import static org.junit.Assert.*;
 
 
@@ -32,6 +34,9 @@ public class CourseRepositoryTest {
 
     @Autowired
     CourseRepository courseRepository;
+
+    @Autowired
+    EntityManager em;
 
     @Test
     public void findById() {
@@ -66,6 +71,12 @@ public class CourseRepositoryTest {
         courseRepository.deleteById(10002L);
         final Course course = courseRepository.findById(10002L);
         assertNull("Course should be null",course);
+    }
+
+    @Test
+    public void testJPQL_ByType() {
+        String query = "select * from Course c";
+        em.createQuery(query, Course.class).getResultList().forEach(result -> System.out.println(result));
     }
 
 }

@@ -1,6 +1,10 @@
 package com.piyush.hibernateTutorial.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 
 //@Table(name = "CourseDetails") //  required with you need to specify a different table name
@@ -15,7 +19,13 @@ public class Course {
     // and other contraints in db colunt
     private String name;
 
+    @Column(name = "created_date")
+    @CreationTimestamp
+    private LocalDateTime createdDate;
 
+    @Column(name = "last_updated_date")
+    @UpdateTimestamp
+    private LocalDateTime lastUpdatedDate;
 
     public Course() {
     }

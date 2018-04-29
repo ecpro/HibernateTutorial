@@ -1,4 +1,8 @@
-insert into course(id, name) values(10001, 'Data Structures');
-insert into course(id, name) values(10002, 'Algorithms');
-insert into course(id, name) values(10003, 'Concurrency');
-insert into course(id, name) values(10004, 'Multithreading');
+insert into course(id, name, created_date, last_updated_date)
+values(10001, 'Data Structures', sysdate(), sysdate());
+insert into course(id, name, created_date, last_updated_date)
+values(10002, 'Algorithms', sysdate(), sysdate());
+insert into course(id, name, created_date, last_updated_date)
+values(10003, 'Concurrency', sysdate(), sysdate());
+insert into course(id, name, created_date, last_updated_date)
+values(10004, 'Multithreading', sysdate(), sysdate());

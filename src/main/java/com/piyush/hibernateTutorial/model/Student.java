@@ -10,7 +10,7 @@ public class Student {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     private String name;
 
@@ -27,11 +27,11 @@ public class Student {
         this.name = name;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

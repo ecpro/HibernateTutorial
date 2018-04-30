@@ -1,7 +1,10 @@
 package com.piyush.hibernateTutorial;
 
 import com.piyush.hibernateTutorial.model.Course;
+import com.piyush.hibernateTutorial.model.Passport;
+import com.piyush.hibernateTutorial.model.Student;
 import com.piyush.hibernateTutorial.repository.CourseRepository;
+import com.piyush.hibernateTutorial.repository.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +24,11 @@ public class HibernateTutorialApplication implements CommandLineRunner {
 	@Autowired
 	CourseRepository courseRepository;
 
+	@Autowired
+	StudentRepository studentRepository;
+
 	@Override
 	public void run(String... args) throws Exception {
-		courseRepository.entityManagerFlushAndDetach();
+		studentRepository.saveStudentWithPassport(new Student("Daulatram"), new Passport("W3421"));
 	}
 }

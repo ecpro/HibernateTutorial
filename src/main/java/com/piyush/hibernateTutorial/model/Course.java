@@ -5,9 +5,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
-//@Table(name = "CourseDetails") //  required with you need to specify a different table name
+//@Table(name = "CourseDetails") //  required when you need to specify a different table name
 @Entity
 public class Course {
 
@@ -16,7 +17,7 @@ public class Course {
     private Long id;
 
     //@Column(name = "full_name", nullable = false) // required for custom column name in db different than class field here
-    // and other contraints in db colunt
+    // and other constraints in db table column
     private String name;
 
     @Column(name = "created_date")
@@ -26,6 +27,15 @@ public class Course {
     @Column(name = "last_updated_date")
     @UpdateTimestamp
     private LocalDateTime lastUpdatedDate;
+
+
+    /**
+     * One course can have many reviews. Hence oneToMany relationship here.
+     * Course's id is foreign key in review table.
+     */
+
+    @OneToMany(mappedBy = "course") // course is defined in Review Entity
+    private List<Review> reviews;
 
     public Course() {
     }
@@ -48,6 +58,18 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void addReview(Review review) {
+        if(review != null) this.reviews.add(review);
+    }
+
+    public void removeReview(Review review) {
+        this.reviews.remove(review);
     }
 
     @Override

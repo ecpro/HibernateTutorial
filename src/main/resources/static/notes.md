@@ -1,13 +1,33 @@
-**Hibernate Notes**
+#Hibernate Notes
 
 No EntityManager with actual transaction available for current thread Exception : Mark Class as transactional
 
-JPQL queries from Entities
+Whenevery you are making any change in db it will always go under a transaction.
 
-Difference between @Entity and @Table :
+***When does hibernate sends updates to database ?***
 
-@Table is hibernate specific and @Entity belongs to javax.persistance
+```Java
+@Transactional
+public void save() {
+    em.persists(course1);
+    em.persists(course2); // this just will generate id from  a sequence and data is not inserted in db at this moment
 
-For JPQL we use entity name and HQL we use table name. However they both point to same object
+    // em.flush(); // if you use this method then it will save current state of course1 and course2 to db but not commit. Commit will always be at the end.
+
+    // further changes in course1
+    // further changes in course2
+
+} // now data is saved and committed if every thing goes right else rollback
+```
+
+***When do we need @Transactional and @DirtiesContext in unit tests and what's the difference ?***
+
+
+
+
+
+
+
+
 
 

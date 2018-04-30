@@ -2,7 +2,7 @@
 
 No EntityManager with actual transaction available for current thread Exception : Mark Class as transactional
 
-Whenevery you are making any change in db it will always go under a transaction.
+Whenever you are making any change in db it will always go under a transaction.
 
 ***When does hibernate sends updates to database ?***
 
@@ -21,6 +21,19 @@ public void save() {
 ```
 
 ***When do we need @Transactional and @DirtiesContext in unit tests and what's the difference ?***
+
+----------
+In examples we are using tables as Course, Student, Review and Passport
+- Course and Review have one to many relationship
+- Student and Passport have one to one relationship
+- Course and Student have one to many relationship
+- Student and Course have one to many relationship
+
+
+
+
+
+
 
 
 

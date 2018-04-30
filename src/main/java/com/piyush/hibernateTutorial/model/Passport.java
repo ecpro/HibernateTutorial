@@ -12,6 +12,10 @@ public class Passport {
     @Column(name = "number")
     private String passportNumber;
 
+    public Passport() {
+
+    }
+
     public Passport(String passportNumber) {
         this.passportNumber = passportNumber;
     }

@@ -23,6 +23,9 @@ public class Student {
     @OneToOne
     private Passport passport;
 
+    public Student() {
+    }
+
     public Student(String name) {
         this.name = name;
     }

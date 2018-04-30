@@ -29,6 +29,9 @@ In examples we are using tables as Course, Student, Review and Passport
 - Course and Student have one to many relationship
 - Student and Course have one to many relationship
 
+> One to one relationships are always eager fetch
+
+
 
 
 

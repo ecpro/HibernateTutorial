@@ -1,9 +1,6 @@
 package com.piyush.hibernateTutorial.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Student {
@@ -20,7 +17,7 @@ public class Student {
      * In our case Student is owning the relationship.
      */
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY) // default is eager fetch
     private Passport passport;
 
     public Student() {
@@ -58,7 +55,8 @@ public class Student {
     public String toString() {
         return "Student{" +
                 "id=" + id +
-                ", name=" + name +
+                ", name='" + name + '\'' +
+                ", passport=" + passport +
                 '}';
     }
 }

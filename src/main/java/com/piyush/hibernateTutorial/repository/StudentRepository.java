@@ -55,4 +55,11 @@ public class StudentRepository {
         return student;
     }
 
+    public Student lazyFetchStudentWithPassport(Long id) {
+        Student student = entityManager.find(Student.class, id);
+        logger.info("student --> {} ", student);
+        logger.info("student passport --> {}", student.getPassport());
+        return student;
+    }
+
 }

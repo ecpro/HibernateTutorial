@@ -12,6 +12,10 @@ public class Passport {
     @Column(name = "number")
     private String passportNumber;
 
+    // student table is the owning side of relationship as it has passport_id as foreign key. Hence mappedby used here.
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "passport") // mapped by passport field in Student class.
+    private Student student;
+
     public Passport() {
 
     }
@@ -36,6 +40,14 @@ public class Passport {
         this.passportNumber = passportNumber;
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     @Override
     public String toString() {
         return "Passport{" +
@@ -43,4 +55,6 @@ public class Passport {
                 ", passportNumber='" + passportNumber + '\'' +
                 '}';
     }
+
+
 }

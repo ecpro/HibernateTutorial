@@ -30,6 +30,7 @@ public class HibernateTutorialApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		//studentRepository.saveStudentWithPassport(new Student("Daulatram"), new Passport("W3421"));
-		studentRepository.fetchStudentWithPassport(40001L);
+		//studentRepository.fetchStudentWithPassport(40001L);
+		studentRepository.lazyFetchStudentWithPassport(40001L);
 	}
 }

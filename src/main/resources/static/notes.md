@@ -43,7 +43,8 @@ In examples we are using tables as Course, Student, Review and Passport
 - Course and Student have one to many relationship
 - Student and Course have one to many relationship
 
-> One to one relationships are always eager fetch
+> (one/many) to one relationships are always eager fetch by default
+> (one/many) to many relationships are always lazy fetch by default
 
 *Try to learn more about lazy fetch in hibernate*
 

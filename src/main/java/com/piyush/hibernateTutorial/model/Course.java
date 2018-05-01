@@ -35,7 +35,7 @@ public class Course {
      */
 
     @OneToMany(mappedBy = "course") // course is defined in Review Entity
-    private List<Review> reviews;
+    private List<Review> reviews; // by default one to many is Lazy fetched as opposed to one to one which is eager fetch
 
     public Course() {
     }

@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 
@@ -98,5 +100,33 @@ public class CourseRepositoryTest {
         Course course = courseRepository.findById(10001L);
         ///System.out.println(course.getReviews());
         assertEquals(3, course.getReviews().size());
+    }
+
+    /**
+     * Without @Transactional it will throw LazyInitializationException
+     * as one to many by default is lazy fetched and we need transaction/persistanceContext to surview till we get reviews
+     */
+    @Test @Transactional
+    public void fetchReviewsForACourse() {
+        Course course = courseRepository.findById(10001L);
+        List<Review> reviews = course.getReviews();
+        reviews.forEach(review -> System.out.println(review));
+    }
+
+    /**
+     * add attribute of eager fetch on reviews in course Entity before executing this method
+     */
+    @Test // no @Transactional required as Eager fetch is added to Reviews in Course Entity
+    public void eagerFetchReviewForACourse() {
+        Course course = courseRepository.findById(10001L);
+        List<Review> reviews = course.getReviews();
+        reviews.forEach(review -> System.out.println(review));
+    }
+
+    @Test // Try running the below method by changing the fetch type to lazy for course in Review entity: Will throw LazyInitializationException without @Transactional
+    public void fetchCourseForAReview() {
+        Review review = em.find(Review.class, 30002L);
+        Course course = review.getCourse();
+        System.out.println(course);
     }
 }

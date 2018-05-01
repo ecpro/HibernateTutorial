@@ -17,7 +17,7 @@ public class Student {
      * In our case Student is owning the relationship.
      */
 
-    @OneToOne(fetch = FetchType.LAZY) // default is eager fetch
+    @OneToOne(fetch = FetchType.LAZY) // default is eager fetch in one to one
     private Passport passport;
 
     public Student() {

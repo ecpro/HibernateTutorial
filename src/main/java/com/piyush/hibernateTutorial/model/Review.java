@@ -1,9 +1,6 @@
 package com.piyush.hibernateTutorial.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Review {
@@ -21,6 +18,7 @@ public class Review {
      */
 
     @ManyToOne
+
     private Course course;
 
     public Review(int rating, String description) {

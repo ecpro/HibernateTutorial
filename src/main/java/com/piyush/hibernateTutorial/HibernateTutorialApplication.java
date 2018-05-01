@@ -2,6 +2,7 @@ package com.piyush.hibernateTutorial;
 
 import com.piyush.hibernateTutorial.model.Course;
 import com.piyush.hibernateTutorial.model.Passport;
+import com.piyush.hibernateTutorial.model.Review;
 import com.piyush.hibernateTutorial.model.Student;
 import com.piyush.hibernateTutorial.repository.CourseRepository;
 import com.piyush.hibernateTutorial.repository.StudentRepository;
@@ -31,6 +32,7 @@ public class HibernateTutorialApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		//studentRepository.saveStudentWithPassport(new Student("Daulatram"), new Passport("W3421"));
 		//studentRepository.fetchStudentWithPassport(40001L);
-		studentRepository.lazyFetchStudentWithPassport(40001L);
+		//studentRepository.lazyFetchStudentWithPassport(40001L);
+		courseRepository.addReviewsToCourse(10001L, new Review(5, "updated new review"));
 	}
 }

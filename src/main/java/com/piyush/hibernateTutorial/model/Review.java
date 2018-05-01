@@ -23,6 +23,11 @@ public class Review {
     @ManyToOne
     private Course course;
 
+    public Review(int rating, String description) {
+        this.rating = rating;
+        this.description = description;
+    }
+
     public Review() {
 
     }

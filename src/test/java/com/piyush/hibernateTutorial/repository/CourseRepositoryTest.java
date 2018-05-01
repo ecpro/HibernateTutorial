@@ -1,6 +1,7 @@
 package com.piyush.hibernateTutorial.repository;
 
 import com.piyush.hibernateTutorial.model.Course;
+import com.piyush.hibernateTutorial.model.Review;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import javax.persistence.EntityManager;
@@ -89,4 +91,12 @@ public class CourseRepositoryTest {
 
     }
 
+    @Test @Transactional
+    public void addReviewsToCourse() {
+        Review review = new Review(4, "Nice course - recent review");
+        courseRepository.addReviewsToCourse(10001L, review);
+        Course course = courseRepository.findById(10001L);
+        ///System.out.println(course.getReviews());
+        assertEquals(3, course.getReviews().size());
+    }
 }

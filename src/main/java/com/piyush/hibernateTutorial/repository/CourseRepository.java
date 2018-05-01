@@ -1,6 +1,7 @@
 package com.piyush.hibernateTutorial.repository;
 
 import com.piyush.hibernateTutorial.model.Course;
+import com.piyush.hibernateTutorial.model.Review;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,6 +105,17 @@ public class CourseRepository {
         // update by values returned by that query
 
         entityManager.flush();
+
+    }
+
+    public void addReviewsToCourse(Long courseId, Review review) {
+
+        //1. find the course for which reviews are to be added.
+        Course course = this.findById(courseId);
+
+        //2. add reviews
+        review.setCourse(course);
+        entityManager.persist(review);
 
     }
 

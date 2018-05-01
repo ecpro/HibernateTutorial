@@ -38,10 +38,9 @@ populate the comments. (In eager fetch comments are populated during user fetch 
 
 ----------
 In examples we are using tables as Course, Student, Review and Passport
-- Course and Review have one to many relationship
-- Student and Passport have one to one relationship
-- Course and Student have one to many relationship
-- Student and Course have one to many relationship
+- Course >-- one to many --> Review
+- Student -- one to one -- Passport
+- Course <-- many to many --> Student
 
 > (one/many) to one relationships are always eager fetch by default
 > (one/many) to many relationships are always lazy fetch by default

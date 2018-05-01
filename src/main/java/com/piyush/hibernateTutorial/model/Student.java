@@ -1,6 +1,7 @@
 package com.piyush.hibernateTutorial.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -20,11 +21,31 @@ public class Student {
     @OneToOne(fetch = FetchType.LAZY) // default is eager fetch in one to one
     private Passport passport;
 
+    /**
+     * Below if we don't use @JoinTable then hibernate will automatically name the table as student_courses
+     * Similarly for custom column name we needed @JoinColumn
+     */
+    @ManyToMany
+    @JoinTable(
+            name = "STUDENT_COURSE",
+            joinColumns = @JoinColumn(name = "STUDENT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "COURSE_ID")
+    )
+    private List<Course> courses;
+
     public Student() {
     }
 
     public Student(String name) {
         this.name = name;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void addCourse(Course course) {
+        this.courses.add(course);
     }
 
     public Long getId() {

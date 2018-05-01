@@ -37,6 +37,15 @@ public class Course {
     @OneToMany(mappedBy = "course") // course is defined in Review Entity
     private List<Review> reviews; // by default one to many is Lazy fetched as opposed to one to one which is eager fetch
 
+
+    /**
+        Lets make student the owning side of the relationship. So we'll need mapped by attribute here.
+        If we don't use mappedBy any where then two tables will be created as course_students and student_courses.
+        That's why its necessary to make one of the Entities as owning side of relationship
+     */
+    @ManyToMany(mappedBy = "courses")
+    private List<Student> students; // *** to many so lazy fetch by default
+
     public Course() {
     }
 
@@ -70,6 +79,14 @@ public class Course {
 
     public void removeReview(Review review) {
         this.reviews.remove(review);
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void addStudent(Student student) {
+        this.students.add(student);
     }
 
     @Override

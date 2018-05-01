@@ -33,6 +33,8 @@ public class HibernateTutorialApplication implements CommandLineRunner {
 		//studentRepository.saveStudentWithPassport(new Student("Daulatram"), new Passport("W3421"));
 		//studentRepository.fetchStudentWithPassport(40001L);
 		//studentRepository.lazyFetchStudentWithPassport(40001L);
-		courseRepository.addReviewsToCourse(10001L, new Review(5, "updated new review"));
+		//courseRepository.addReviewsToCourse(10001L, new Review(5, "updated new review"));
+		//studentRepository.addStudentAndCourse();
+		studentRepository.addStudentToACourse();
 	}
 }

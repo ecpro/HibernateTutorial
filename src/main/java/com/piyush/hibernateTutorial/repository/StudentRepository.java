@@ -1,5 +1,6 @@
 package com.piyush.hibernateTutorial.repository;
 
+import com.piyush.hibernateTutorial.model.Course;
 import com.piyush.hibernateTutorial.model.Passport;
 import com.piyush.hibernateTutorial.model.Student;
 import org.slf4j.Logger;
@@ -60,6 +61,28 @@ public class StudentRepository {
         logger.info("student --> {} ", student);
         logger.info("student passport --> {}", student.getPassport());
         return student;
+    }
+
+    public void addStudentToACourse() {
+        Course course = entityManager.find(Course.class, 10004L);
+        Student student = entityManager.find(Student.class, 40003L);
+        course.addStudent(student);
+        student.addCourse(course);
+        //entityManager.persist(student);
+        course.getStudents().forEach(student1 -> System.out.println(student1));
+    }
+
+    public void addStudentAndCourse() {
+        Course course = new Course("Bakloli 101");
+        Student student = new Student("Chatur");
+
+        entityManager.persist(student);
+        entityManager.persist(course);
+
+        student.addCourse(course);
+        course.addStudent(student);
+
+        entityManager.persist(student);
     }
 
 }

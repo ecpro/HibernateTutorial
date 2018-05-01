@@ -33,8 +33,19 @@ values(40002, 'Shyam', 20002);
 insert into student(id, name, passport_id)
 values(40003, 'Ghanshayam', 20003);
 insert into student(id, name, passport_id)
-values(4004, 'Tukaram', 20004);
+values(40004, 'Tukaram', 20004);
 
+
+insert into student_course(student_id, course_id)
+values(40001, 10001);
+insert into student_course(student_id, course_id)
+values(40001, 10002);
+insert into student_course(student_id, course_id)
+values(40002, 10004);
+insert into student_course(student_id, course_id)
+values(40003, 10001);
+insert into student_course(student_id, course_id)
+values(40004, 10003);
 
 
 

@@ -1,5 +1,6 @@
 package com.piyush.hibernateTutorial.repository;
 
+import com.piyush.hibernateTutorial.model.Course;
 import com.piyush.hibernateTutorial.model.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -22,6 +25,9 @@ public class StudentRepositoryTest {
 
     @Autowired
     EntityManager em;
+
+    @Autowired
+    StudentRepository repository;
 
     @Test
     public void findById() {
@@ -49,4 +55,23 @@ public class StudentRepositoryTest {
         logger.info("student --> {}", student);
         logger.info("passport --> {}", student.getPassport());
     }
+
+    @Test @Transactional // many to many lazy fetch by default so @Transactional used here
+    public void fetchStudentWithACourse() {
+        Course course = em.find(Course.class, 10001L);
+        List<Student> students = course.getStudents();
+        students.forEach(student -> System.out.println(student));
+    }
+
+    @Test
+    public void addStudentToACourse() {
+        repository.addStudentToACourse();
+    }
+
+    @Test
+    public void addStudentAndCourse() {
+        repository.addStudentAndCourse();
+    }
+
+
 }

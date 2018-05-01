@@ -5,6 +5,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -44,7 +45,7 @@ public class Course {
         That's why its necessary to make one of the Entities as owning side of relationship
      */
     @ManyToMany(mappedBy = "courses")
-    private List<Student> students; // *** to many so lazy fetch by default
+    private List<Student> students = new ArrayList<>(); // *** to many so lazy fetch by default
 
     public Course() {
     }

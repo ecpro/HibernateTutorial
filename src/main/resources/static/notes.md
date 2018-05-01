@@ -20,6 +20,20 @@ public void save() {
 } // now data is saved and committed if every thing goes right else rollback
 ```
 
+***Do readonly methods require a transaction?***
+Yes sometimes we do. Take for example two entities/table : User and Comments (one to many relationship here)
+Assume we are using lazy fetching here to fetch comments.
+
+```Java
+public List<Comments> readOnlyTransactionExample() {
+    User user = entityManager.find(User.class, 20001L); // creates and ends one transaction here
+    List<Comments> comments = user.getComments(); // will throw exception related to invalid session as no transaction exists
+    return comments;
+}
+```
+If we mark the above method with @Transactional then user.getComments() is also in the transaction and a db call is made to
+populate the comments. (In eager fetch comments are populated during user fetch itself)
+
 ***When do we need @Transactional and @DirtiesContext in unit tests and what's the difference ?***
 
 ----------

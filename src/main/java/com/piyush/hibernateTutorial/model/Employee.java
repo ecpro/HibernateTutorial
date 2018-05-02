@@ -2,8 +2,9 @@ package com.piyush.hibernateTutorial.model;
 
 import javax.persistence.*;
 
+//@MappedSuperclass // Read about it on http://www.baeldung.com/hibernate-inheritance
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @DiscriminatorColumn(name = "EMPLOYEE_TYPE") // THIS COLUMN WILL TELL WHETHER PART TIME OR FULL TIME
 public abstract class Employee {
 

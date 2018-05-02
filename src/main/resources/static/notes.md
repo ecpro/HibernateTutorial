@@ -75,6 +75,8 @@ public void multipleDBOperation() {
 //Without @Transactional each opeation creates a new transaction with their own persistance context which vanishes after each individual operation.
 ```
 
+***JPA Inheritance Hierarchies and Mappings - How to Choose?***
+
 
 
 

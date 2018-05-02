@@ -5,6 +5,7 @@ import com.piyush.hibernateTutorial.model.Passport;
 import com.piyush.hibernateTutorial.model.Review;
 import com.piyush.hibernateTutorial.model.Student;
 import com.piyush.hibernateTutorial.repository.CourseRepository;
+import com.piyush.hibernateTutorial.repository.EmployeeRepository;
 import com.piyush.hibernateTutorial.repository.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,9 @@ public class HibernateTutorialApplication implements CommandLineRunner {
 	@Autowired
 	StudentRepository studentRepository;
 
+	@Autowired
+	EmployeeRepository employeeRepository;
+
 	@Override
 	public void run(String... args) throws Exception {
 		//studentRepository.saveStudentWithPassport(new Student("Daulatram"), new Passport("W3421"));
@@ -35,6 +39,9 @@ public class HibernateTutorialApplication implements CommandLineRunner {
 		//studentRepository.lazyFetchStudentWithPassport(40001L);
 		//courseRepository.addReviewsToCourse(10001L, new Review(5, "updated new review"));
 		//studentRepository.addStudentAndCourse();
-		studentRepository.addStudentToACourse();
+		//studentRepository.addStudentToACourse();
+
+		employeeRepository.addEmployee();
+
 	}
 }

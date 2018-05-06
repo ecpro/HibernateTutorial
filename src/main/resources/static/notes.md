@@ -78,6 +78,108 @@ public void multipleDBOperation() {
 ***JPA Inheritance Hierarchies and Mappings - How to Choose?***
 
 
+***Difference between dirty read, non-repeatable read and phantom reads***
+
+
+***Difference between 4 isoliation levels***
+
+1. Read Committed
+2. Read Uncommitted
+3. Repeatable Reads
+4. Serializable
+
+***What is right isolation level for your application?***
+
+***First level cache***
+First level cache runs within the boundary of a transaction. If same query is fired twice within a transactional,
+only the first time it converts it into actual sql query, the second time it retrives it from the first level cache.
+
+**Aggregation v/s Composition**
+
+Both defines relationship between objects. Aggregation is week relationship where as composition is strong.
+For example, a typical flight has pilots, crew members, a plane, passangers, flight schedule, destinations, etc.
+If you observe, you'll find that each of these object can exist independently. Same pilot/passanger/crew can be in differnt flights at different times. Differnt flight can have same set of destinations. A plane can be used for rescue operation or commercial operation or can be retrofitted for military or scientic use. A crew member can switch airline company. None of these objects are strongly coupled to a flight. Hence a flight is a aggregation of these objects.
+
+On the other hand take one of the object such as plane from the above example. A plane is composed of wings, engine, fuselage, etc. None of these components have a meaningful independent existance. A jet engine can only be fitted to a plane. A car cannot have wings or a bus cannot have a fuselage. These objects only have a meaning in context of a plane. Hence a plane is a example of compostion.
+
+Entity and Value Type Object in ORM ?
+
+Entity types have an identity (primary key) and a separate table exists for them. Value types are just objects whose fields
+translated to columns in a table.
+
+Take a person table composed of id, name, age, pincode, street and city as columns.
+
+<div>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>age</th>
+            <th>pincode</th>
+            <th>street</th>
+            <th>city</th>
+        </tr>
+        <tr align="center">
+            <td>23</td>
+            <td>Joen</td>
+            <td>23</td>
+            <td>411027</td>
+            <td>Vishal Nager</td>
+            <td>Pune</td>
+        </tr>
+        <tr align="center">
+            <td>23</td>
+            <td>Joen</td>
+            <td>23</td>
+            <td>411027</td>
+            <td>Vishal Nager</td>
+            <td>Pune</td>
+        </tr>
+    </table>
+</div>
+
+The corresponding java class will be as shown below.
+Ofcourse, we can put pincode and street, etc directly but that would be a bad design as they are better composed into a address object.
+
+```Java
+class Person {
+    String id;
+    String name;
+    String age;
+    Address address;
+}
+
+class Address {
+    String pincode;
+    String street;
+    String city;
+}
+```
+Here Person class is of Entity Type and Address is of value type. With Hibernate annotation the classes will look like.
+
+```Java
+@Entity // mark Person as entity
+class Person {
+    @Id @GeneratedValue
+    String id;
+
+    String name;
+    String age;
+
+    @Embedded
+    Address address;
+}
+
+@Embeddable
+class Address {
+    String pincode;
+    String street;
+    String city;
+}
+```
+Do all persisent classes have their own database identity ?
+- Value types does not have their own identity. Its clear from above example.
+
 
 
 

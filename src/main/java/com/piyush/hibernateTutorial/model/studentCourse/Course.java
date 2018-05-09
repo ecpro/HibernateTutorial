@@ -1,4 +1,4 @@
-package com.piyush.hibernateTutorial.model;
+package com.piyush.hibernateTutorial.model.studentCourse;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;

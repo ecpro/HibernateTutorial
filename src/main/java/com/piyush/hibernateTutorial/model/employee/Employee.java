@@ -1,4 +1,4 @@
-package com.piyush.hibernateTutorial.model;
+package com.piyush.hibernateTutorial.model.employee;
 
 import javax.persistence.*;
 

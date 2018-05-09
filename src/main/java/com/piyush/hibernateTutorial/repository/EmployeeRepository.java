@@ -1,8 +1,8 @@
 package com.piyush.hibernateTutorial.repository;
 
-import com.piyush.hibernateTutorial.model.Employee;
-import com.piyush.hibernateTutorial.model.FullTimeEmployee;
-import com.piyush.hibernateTutorial.model.PartTimeEmployee;
+import com.piyush.hibernateTutorial.model.employee.Employee;
+import com.piyush.hibernateTutorial.model.employee.FullTimeEmployee;
+import com.piyush.hibernateTutorial.model.employee.PartTimeEmployee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

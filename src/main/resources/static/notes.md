@@ -1,4 +1,4 @@
-#Hibernate Notes
+# Hibernate Notes
 
 No EntityManager with actual transaction available for current thread Exception : Mark Class as transactional
 
@@ -161,7 +161,7 @@ Here Person class is of Entity Type and Address is of value type. With Hibernate
 @Entity // mark Person as entity
 class Person {
     @Id @GeneratedValue
-    String id;
+    String id; // primary key
 
     String name;
     String age;
@@ -179,6 +179,29 @@ class Address {
 ```
 Do all persisent classes have their own database identity ?
 - Value types does not have their own identity. Its clear from above example.
+
+**Composite Primary Key**
+- Generally we have a id column in table that represent primary key, the corresponding object field is annotated with
+@Id. But what about the case when we use composite key as primary key. For Instance, if firstName and lastName together constitutes a primary key. In such situation we do the following.
+```Java
+@Embeddable
+class PersonPrimaryKey {
+    String firstName;
+    String lastName;
+    public PersonPrimaryKey() {}
+    /* don't forget to override equals() and hashcode() methods for java side key comparision */
+}
+
+@Entity
+class Person {
+    @EmbeddedId
+    PersonPrimaryKey key; // this is how multiple columns are made primary key in hibernate
+}
+```
+*Composite keys are not recommended to be used as primary keys. Even Business keys such ss isbn or ssn are unique can can be used as primary key but also not recommended as they have other meaning other than uniquely identifying a record. Primary keys should not any business meaning form a good design perspective. That's why auto generated unique ids are used as primary keys, also called synthetic identifiers (no business meaning)*
+
+**Composite Foreign Key**
+
 
 
 

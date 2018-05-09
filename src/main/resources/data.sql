@@ -48,4 +48,28 @@ insert into student_course(student_id, course_id)
 values(40004, 10003);
 
 
+insert into person(id, name, age, pincode, street, city)
+values(1, 'John', 33, '411027', 'Vishal Nagar', 'Pune');
+
+
+insert into guide(id, name)
+values(101, 'Josh');
+insert into guide(id, name)
+values(102, 'Gosh');
+
+insert into tourist(id, name, guide_id)
+values (201, 'Tour1', 102);
+insert into tourist(id, name, guide_id)
+values (202, 'Tour2', 102);
+insert into tourist(id, name, guide_id)
+values (203, 'Tour3', 101);
+insert into tourist(id, name, guide_id)
+values (204, 'Tour4', 102);
+insert into tourist(id, name, guide_id)
+values (205, 'Tour5', null);
+insert into tourist(id, name, guide_id)
+values (206, 'Tour6', null);
+
+
+
 

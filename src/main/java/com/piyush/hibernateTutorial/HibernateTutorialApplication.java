@@ -1,12 +1,6 @@
 package com.piyush.hibernateTutorial;
 
-import com.piyush.hibernateTutorial.model.Course;
-import com.piyush.hibernateTutorial.model.Passport;
-import com.piyush.hibernateTutorial.model.Review;
-import com.piyush.hibernateTutorial.model.Student;
-import com.piyush.hibernateTutorial.repository.CourseRepository;
-import com.piyush.hibernateTutorial.repository.EmployeeRepository;
-import com.piyush.hibernateTutorial.repository.StudentRepository;
+import com.piyush.hibernateTutorial.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +26,12 @@ public class HibernateTutorialApplication implements CommandLineRunner {
 	@Autowired
 	EmployeeRepository employeeRepository;
 
+	@Autowired
+	TouristRepository touristRepository;
+
+	@Autowired
+	GuideRepository guideRepository;
+
 	@Override
 	public void run(String... args) throws Exception {
 		//studentRepository.saveStudentWithPassport(new Student("Daulatram"), new Passport("W3421"));
@@ -40,8 +40,14 @@ public class HibernateTutorialApplication implements CommandLineRunner {
 		//courseRepository.addReviewsToCourse(10001L, new Review(5, "updated new review"));
 		//studentRepository.addStudentAndCourse();
 		//studentRepository.addStudentToACourse();
+		//employeeRepository.addEmployee();
 
-		employeeRepository.addEmployee();
+		//touristRepository.addGuideToTorist(205L);
+		//guideRepository.findGuidesById(102L);
+		//guideRepository.findGuidesById(102L);
+
+		//touristRepository.addTouristAndGuideCorrectImplementation();
+		touristRepository.addTouristAndGuideWithCascade();
 
 	}
 }

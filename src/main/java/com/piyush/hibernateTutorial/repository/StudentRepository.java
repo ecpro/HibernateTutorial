@@ -1,22 +1,24 @@
 package com.piyush.hibernateTutorial.repository;
 
-import com.piyush.hibernateTutorial.model.Course;
-import com.piyush.hibernateTutorial.model.Passport;
-import com.piyush.hibernateTutorial.model.Student;
+import com.piyush.hibernateTutorial.model.studentCourse.Course;
+import com.piyush.hibernateTutorial.model.studentCourse.Passport;
+import com.piyush.hibernateTutorial.model.studentCourse.Student;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
 @Repository
-@Transactional
+@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 public class StudentRepository {
 
     Logger logger = LoggerFactory.getLogger(StudentRepository.class);
-    
+
     @Autowired
     private EntityManager entityManager;
 

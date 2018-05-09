@@ -1,7 +1,7 @@
 package com.piyush.hibernateTutorial.repository;
 
-import com.piyush.hibernateTutorial.model.Course;
-import com.piyush.hibernateTutorial.model.Review;
+import com.piyush.hibernateTutorial.model.studentCourse.Course;
+import com.piyush.hibernateTutorial.model.studentCourse.Review;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

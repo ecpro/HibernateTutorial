@@ -1,7 +1,7 @@
 package com.piyush.hibernateTutorial.repository;
 
-import com.piyush.hibernateTutorial.model.Course;
-import com.piyush.hibernateTutorial.model.Student;
+import com.piyush.hibernateTutorial.model.studentCourse.Course;
+import com.piyush.hibernateTutorial.model.studentCourse.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -14,8 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

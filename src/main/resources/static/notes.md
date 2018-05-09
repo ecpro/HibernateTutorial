@@ -105,7 +105,9 @@ On the other hand take one of the object such as plane from the above example. A
 Entity and Value Type Object in ORM ?
 
 Entity types have an identity (primary key) and a separate table exists for them. Value types are just objects whose fields
-translated to columns in a table.
+translated to columns in a table. For collection of value type, separate table can be used with composite primary key. For instance, a person can have multiple addresses or nicknames.
+This is explained later in this note. However its entirely upto developer/designers to identify an object as entity type or
+value type. These is no strict rule.
 
 Take a person table composed of id, name, age, pincode, street and city as columns.
 
@@ -202,11 +204,50 @@ class Person {
 
 **Composite Foreign Key**
 
+**TRANSITIVE PERSISTENCE**
 
+**MAPPING ENUM TYPES**
 
+**MAPPTING COLLECTION OF BASIC VALUE TYPE**
 
+Suppose we have a STUDENT table with columns ID(primary_key), NAME, ROLL_NUMBER and PASSPORT_ID(foreign_key).
 
+<div>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>roll_number</th>
+            <th>passport_id</th>
+        </tr>
+        <tr align="center">
+            <td>1</td>
+            <td>Joen</td>
+            <td>10</td>
+            <td>A2345</td>
+        </tr>
+        <tr align="center">
+            <td>2</td>
+            <td>Poen</td>
+            <td>13</td>
+            <td>X2311</td>
+        </tr>
+    </table>
+</div>
 
+Now we want to add nicknames to all the students. A student may have more than one nicknames.
+
+- We can store names as NICK_NAME1 | NICK_NAME2 | NICK_NAME3 as multi-valued column NICKNAMES. But it will voilate 1st NF.
+- If we add separate rows for separate nicknames, primary key integrity contraint will be violated as ids will be repeated.
+
+As a solution, we can store nicknames as a separate table NICKNAME with columns NICKNAME_VALUE, STUDENT_ID. STUDENT and NICKNAME table have many-to-one mapping. Since we are identifying NICKNAME table as a Value type and not as Entity type so we won't assign a id as primary key here. Instead we'll use composite keys (NICKNAME_VALUE, STUDENT_ID) as primary key to avoid duplication.
+
+In hibernate, its done using @ElementCollection and @CollectionTable.
+
+- @ElementCollection is the feature which gets the columns values from another table without mapping two tables.
+- @CollectionTable will join the two tables for the given primary and foreign key.
+
+[Documentation link](https://docs.jboss.org/hibernate/jpa/2.1/api/javax/persistence/CollectionTable.html)
 
 
 

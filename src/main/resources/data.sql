@@ -47,6 +47,13 @@ values(40003, 10001);
 insert into student_course(student_id, course_id)
 values(40004, 10003);
 
+insert into nickname(nick_name, student_id)
+values('Rammu', 40001);
+insert into nickname(nick_name, student_id)
+values('Rammy', 40002);
+insert into nickname(nick_name, student_id)
+values('Tukki', 40004);
+
 
 insert into person(id, name, age, pincode, street, city)
 values(1, 'John', 33, '411027', 'Vishal Nagar', 'Pune');

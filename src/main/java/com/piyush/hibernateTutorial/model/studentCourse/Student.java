@@ -2,7 +2,9 @@ package com.piyush.hibernateTutorial.model.studentCourse;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Student {
@@ -33,6 +35,15 @@ public class Student {
             inverseJoinColumns = @JoinColumn(name = "COURSE_ID")
     )
     private List<Course> courses = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "nickname", joinColumns = @JoinColumn(name = "student_id"))
+    //@AttributeOverrides()
+    @Column(name = "nick_name")
+    private Set<String> nickNames = new HashSet<>(); // we don't have any entity class for nickname as
+    // nickNames is of value type (important). However a table is still created as its a set which can have multiple values.
+    // If nickNames was of Entity type then it would be annotated with @OneToMany which is usually
+    // what we do while mapping tables.
 
     public Student() {
     }
@@ -71,6 +82,14 @@ public class Student {
 
     public void setPassport(Passport passport) {
         this.passport = passport;
+    }
+
+    public Set<String> getNickNames() {
+        return nickNames;
+    }
+
+    public void addNickName(String nickName) {
+        this.nickNames.add(nickName);
     }
 
     @Override

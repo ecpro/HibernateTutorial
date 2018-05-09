@@ -57,18 +57,18 @@ values(101, 'Josh');
 insert into guide(id, name)
 values(102, 'Gosh');
 
-insert into tourist(id, name, guide_id)
-values (201, 'Tour1', 102);
-insert into tourist(id, name, guide_id)
-values (202, 'Tour2', 102);
-insert into tourist(id, name, guide_id)
-values (203, 'Tour3', 101);
-insert into tourist(id, name, guide_id)
-values (204, 'Tour4', 102);
-insert into tourist(id, name, guide_id)
-values (205, 'Tour5', null);
-insert into tourist(id, name, guide_id)
-values (206, 'Tour6', null);
+insert into tourist(id, name, tourist_type, guide_id)
+values (201, 'Tour1', 'INTERNATIONAL', 102);
+insert into tourist(id, name, tourist_type, guide_id)
+values (202, 'Tour2', 'INTERNATIONAL', 102);
+insert into tourist(id, name, tourist_type, guide_id)
+values (203, 'Tour3', 'INTERNATIONAL', 101);
+insert into tourist(id, name, tourist_type, guide_id)
+values (204, 'Tour4', 'LOCAL', 102);
+insert into tourist(id, name, tourist_type, guide_id)
+values (205, 'Tour5', 'LOCAL', null);
+insert into tourist(id, name, tourist_type, guide_id)
+values (206, 'Tour6', 'LOCAL', null);
 
 
 

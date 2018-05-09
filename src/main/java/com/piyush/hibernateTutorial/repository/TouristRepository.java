@@ -2,6 +2,7 @@ package com.piyush.hibernateTutorial.repository;
 
 import com.piyush.hibernateTutorial.model.touristGuide.Guide;
 import com.piyush.hibernateTutorial.model.touristGuide.Tourist;
+import com.piyush.hibernateTutorial.model.touristGuide.TouristTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,14 +44,14 @@ public class TouristRepository {
     // ensure no CascadeType selected in Tourist Entity for below two methods
     public void addTouristAndGuideIncorrectImplementation() {
         Guide guide = new Guide("Woolash"); // need to persist before persisting tourist
-        Tourist tourist = new Tourist("Tour7", guide);
+        Tourist tourist = new Tourist("Tour7", guide, TouristTypeEnum.INTERNATIONAL);
         em.persist(tourist);
     }
 
     public void addTouristAndGuideCorrectImplementation() {
         Guide guide = new Guide("Woolash");
         em.persist(guide);
-        Tourist tourist = new Tourist("Tour7", guide);
+        Tourist tourist = new Tourist("Tour7", guide, TouristTypeEnum.INTERNATIONAL);
         em.persist(tourist);
     }
 
@@ -64,7 +65,7 @@ public class TouristRepository {
     // ensure cascadeType.PERSIST selected for below method to execute successfully
     public void addTouristAndGuideWithCascade() {
         Guide guide = new Guide("Woolash");
-        Tourist tourist = new Tourist("Tour7", guide);
+        Tourist tourist = new Tourist("Tour7", guide, TouristTypeEnum.INTERNATIONAL);
         em.persist(tourist);
     }
 
